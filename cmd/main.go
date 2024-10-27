@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"log/slog"
 )
 
 func main() {
-	fmt.Println("init")
+	slog.Info("init")
 }
