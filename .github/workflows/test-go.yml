@@ -1,0 +1,27 @@
+name: "test-go"
+
+on:
+  push:
+    paths:
+      - ".github/workflows/test-go.yml"
+      - "**.go"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Load Environment
+        shell: bash
+        run: cat .env.test >> $GITHUB_ENV
+
+      - name: Run
+        run: go test -v -shuffle=on ./...
