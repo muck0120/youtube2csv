@@ -1,0 +1,20 @@
+version: "3"
+
+tasks:
+  run:
+    desc: Run the youtube2csv program.
+    cmds:
+      - cmd: docker build -t muck0120/youtube2csv .
+      - cmd: docker run -it --rm muck0120/youtube2csv
+
+  lint:
+
+  test:
+
+  tidy:
+
+  gen:
+
+  default:
+    desc: Show command list.
+    cmd: task -l --sort none
