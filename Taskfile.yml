@@ -8,12 +8,22 @@ tasks:
       - cmd: docker run -it --rm muck0120/youtube2csv
 
   lint:
+    desc: Check the Go code complies with the rules.
+    cmd: docker run -t --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.61.0-alpine golangci-lint run -v
 
   test:
+    desc: Test Go app.
+    cmd: docker run --env-file ./.env --rm -v $(pwd):/usr/src/app -w /usr/src/app golang:alpine go test -v -shuffle=on ./...
 
   tidy:
+    desc: Tidy Go module.
+    cmd: docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app golang:alpine go mod tidy
 
   gen:
+    status:
+      - test -f .env
+    cmds:
+      - cp -n .env.example .env
 
   default:
     desc: Show command list.
