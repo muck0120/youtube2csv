@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log/slog"
 	"os"
@@ -11,6 +12,31 @@ import (
 	"google.golang.org/api/option"
 	"google.golang.org/api/youtube/v3"
 )
+
+func getToken(ctx context.Context, config *oauth2.Config) *oauth2.Token {
+	token, err := getTokenFromCache()
+	if err != nil {
+		token = getTokenFromWeb(ctx, config)
+		saveToken(token)
+	}
+
+	return token
+}
+
+func getTokenFromCache() (*oauth2.Token, error) {
+	file, err := os.Open(os.Getenv("WORKDIR") + "/input/token.json")
+	if err != nil {
+		return nil, fmt.Errorf("unable to open file: %w", err)
+	}
+	defer file.Close()
+
+	token := &oauth2.Token{}
+	if err = json.NewDecoder(file).Decode(token); err != nil {
+		return nil, fmt.Errorf("unable to decode token: %w", err)
+	}
+
+	return token, nil
+}
 
 func getTokenFromWeb(ctx context.Context, config *oauth2.Config) *oauth2.Token {
 	authURL := config.AuthCodeURL("state-token", oauth2.AccessTypeOffline)
@@ -32,17 +58,39 @@ func getTokenFromWeb(ctx context.Context, config *oauth2.Config) *oauth2.Token {
 	return token
 }
 
-func channelsListByUsername(service *youtube.Service, part string, forUsername string) {
-	call := service.Channels.List([]string{part})
-	call = call.ForUsername(forUsername)
+func saveToken(token *oauth2.Token) {
+	file, err := os.OpenFile((os.Getenv("WORKDIR") + "/input/token.json"), os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0o600)
+	if err != nil {
+		slog.Error("unable to cache oauth token", slog.String("error", err.Error()))
+	}
+	defer file.Close()
 
-	response, err := call.Do()
+	if err := json.NewEncoder(file).Encode(token); err != nil {
+		slog.Error("unable to cache oauth token", slog.String("error", err.Error()))
+	}
+}
+
+func channelsList(service *youtube.Service) {
+	var count int64 = 300
+	call := service.Search.List([]string{"snippet"}).ChannelId(os.Getenv("CHANNEL_ID")).MaxResults(count)
+
+	res, err := call.Do()
 	if err != nil {
 		slog.Error("failed to call YouTube API", slog.String("error", err.Error()))
 		os.Exit(1)
 	}
 
-	fmt.Println(fmt.Sprintf("This channel's ID is %s. Its title is '%s' and it has %d views.", response.Items[0].Id, response.Items[0].Snippet.Title, response.Items[0].Statistics.ViewCount))
+	for _, item := range res.Items {
+		if item.Id.Kind == "youtube#video" {
+			fmt.Printf("ID: %s\n", item.Id.VideoId)
+			call2 := service.Videos.List([]string{"snippet"}).Id(item.Id.VideoId)
+			res2, _ := call2.Do()
+
+			for _, video := range res2.Items {
+				fmt.Printf("Title: %s\n", video.Snippet.Title)
+			}
+		}
+	}
 }
 
 func main() {
@@ -60,7 +108,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	token := getTokenFromWeb(ctx, config)
+	token := getToken(ctx, config)
 
 	service, err := youtube.NewService(ctx, option.WithTokenSource(config.TokenSource(ctx, token)))
 	if err != nil {
@@ -68,5 +116,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	channelsListByUsername(service, "snippet,contentDetails,statistics", "GoogleDevelopers")
+	channelsList(service)
 }

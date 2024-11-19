@@ -5,7 +5,7 @@ tasks:
     desc: Run the youtube2csv program.
     cmds:
       - cmd: docker build -t muck0120/youtube2csv .
-      - cmd: docker run -it --rm muck0120/youtube2csv
+      - cmd: docker run --env-file ./.env --rm -v $(pwd):/usr/src/youtube2csv muck0120/youtube2csv
 
   lint:
     desc: Check the Go code complies with the rules.

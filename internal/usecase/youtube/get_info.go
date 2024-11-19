@@ -1,4 +1,3 @@
 package youtube
 
-type GetInfoUseCase interface {
-}
+type GetInfoUseCase interface{}
