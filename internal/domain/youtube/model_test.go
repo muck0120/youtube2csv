@@ -46,7 +46,7 @@ func TestVideo_GetURL(t *testing.T) {
 		want  string
 	}{
 		{
-			name:  "Valid ID",
+			name:  "期待する URL を取得できる",
 			model: &youtube.Video{ID: "abc123"},
 			want:  "https://youtu.be/abc123",
 		},
