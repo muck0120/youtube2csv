@@ -1,9 +1,10 @@
-module github.com/muck0120/youtube2csv
+module muck0120/youtube2csv
 
 go 1.23.1
 
 require (
-	golang.org/x/net v0.33.0
+	github.com/go-errors/errors v1.5.1
+	github.com/sosodev/duration v1.3.1
 	golang.org/x/oauth2 v0.24.0
 	google.golang.org/api v0.214.0
 )
@@ -24,6 +25,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.29.0 // indirect
 	go.opentelemetry.io/otel/trace v1.29.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241209162323-e6fa225c2576 // indirect
