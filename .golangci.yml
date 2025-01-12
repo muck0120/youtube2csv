@@ -25,6 +25,12 @@ linters-settings:
   gofumpt:
     module-path: muck0120/youtube2csv
 
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - err113
+
 linters:
   disable-all: true
   enable:
