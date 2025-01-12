@@ -22,7 +22,7 @@ func main() {
 
 	service, err := youtube.NewService(ctx)
 	if err != nil {
-		slog.Error("failed to create YouTube service", slog.String("error", err.Error()))
+		slog.Error("failed to create YouTube service", slog.String("error", err.Error()), errors.LogStackTrace(err))
 
 		return
 	}
