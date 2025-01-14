@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"muck0120/youtube2csv/internal/domain/youtube"
+	"github.com/muck0120/youtube2csv/internal/domain/youtube"
 )
 
 func TestVideo_GetNumber(t *testing.T) {

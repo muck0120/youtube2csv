@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	pkgtime "muck0120/youtube2csv/pkg/time"
+	pkgtime "github.com/muck0120/youtube2csv/internal/pkg/time"
 )
 
 func TestParseISO8601Duration(t *testing.T) {

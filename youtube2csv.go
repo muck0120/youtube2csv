@@ -5,10 +5,10 @@ import (
 	"log/slog"
 	"os"
 
-	controller "muck0120/youtube2csv/internal/controller/youtube"
-	"muck0120/youtube2csv/internal/gateway/youtube"
-	usecase "muck0120/youtube2csv/internal/usecase/youtube"
-	"muck0120/youtube2csv/pkg/errors"
+	controller "github.com/muck0120/youtube2csv/internal/controller/youtube"
+	"github.com/muck0120/youtube2csv/internal/gateway/youtube"
+	"github.com/muck0120/youtube2csv/internal/pkg/errors"
+	usecase "github.com/muck0120/youtube2csv/internal/usecase/youtube"
 )
 
 func main() {

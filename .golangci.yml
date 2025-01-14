@@ -6,24 +6,35 @@ linters-settings:
   depguard: # TODO: Go 実装の際に見直す
     rules:
       main:
-        allow:
+        files:
           - $all
+          - "!$test"
+        allow:
           - $gostd
-          - github.com
-          - muck0120/youtube2csv
+          - github.com/go-errors/errors
+          - github.com/sosodev/duration
+          - github.com/muck0120/youtube2csv
+      test:
+        files:
+          - $test
+        allow:
+          - $gostd
+          - github.com/go-errors/errors
+          - github.com/stretchr/testify/assert
+          - github.com/muck0120/youtube2csv
 
   gci:
     sections:
       - standard
       - default
-      - prefix(muck0120/youtube2csv)
+      - prefix(github.com/muck0120/youtube2csv)
 
   mnd:
     ignored-numbers:
       - "0o600"
 
   gofumpt:
-    module-path: muck0120/youtube2csv
+    module-path: github.com/muck0120/youtube2csv
 
 issues:
   exclude-rules:

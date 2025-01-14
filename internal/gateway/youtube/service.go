@@ -13,7 +13,7 @@ import (
 	"google.golang.org/api/option"
 	"google.golang.org/api/youtube/v3"
 
-	"muck0120/youtube2csv/pkg/errors"
+	"github.com/muck0120/youtube2csv/internal/pkg/errors"
 )
 
 type IService interface {

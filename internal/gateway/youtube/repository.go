@@ -3,9 +3,9 @@ package youtube
 import (
 	"context"
 
-	"muck0120/youtube2csv/internal/domain/youtube"
-	"muck0120/youtube2csv/pkg/errors"
-	"muck0120/youtube2csv/pkg/time"
+	"github.com/muck0120/youtube2csv/internal/domain/youtube"
+	"github.com/muck0120/youtube2csv/internal/pkg/errors"
+	"github.com/muck0120/youtube2csv/internal/pkg/time"
 )
 
 type Repository struct {

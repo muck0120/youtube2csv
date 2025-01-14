@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"time"
 
-	"muck0120/youtube2csv/internal/usecase/youtube"
-	"muck0120/youtube2csv/pkg/errors"
+	"github.com/muck0120/youtube2csv/internal/pkg/errors"
+	"github.com/muck0120/youtube2csv/internal/usecase/youtube"
 )
 
 type IGetInfoController interface {

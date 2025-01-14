@@ -5,7 +5,7 @@ import (
 
 	"github.com/sosodev/duration"
 
-	"muck0120/youtube2csv/pkg/errors"
+	"github.com/muck0120/youtube2csv/internal/pkg/errors"
 )
 
 func ParseISO8601Duration(iso8601Duration string) (time.Duration, error) {
