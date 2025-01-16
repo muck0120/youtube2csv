@@ -51,7 +51,7 @@ func NewService(ctx context.Context, secretFile, tokenFile string) (*Service, er
 }
 
 func getToken(ctx context.Context, config *oauth2.Config, tokenFile string) (*oauth2.Token, error) {
-	token, err := getTokenFromCache()
+	token, err := getTokenFromCache(tokenFile)
 	if err == nil { // キャッシュファイルがあればそれを返す
 		return token, nil
 	}
@@ -69,8 +69,8 @@ func getToken(ctx context.Context, config *oauth2.Config, tokenFile string) (*oa
 	return token, nil
 }
 
-func getTokenFromCache() (*oauth2.Token, error) {
-	file, err := os.Open(os.Getenv("WORKDIR") + "/input/token.json")
+func getTokenFromCache(tokenFile string) (*oauth2.Token, error) {
+	file, err := os.Open(tokenFile)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
