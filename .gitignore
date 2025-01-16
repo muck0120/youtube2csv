@@ -1,6 +1,5 @@
 # gitignore files
 .DS_Store
 .task
-.env
 
 # not gitignore files

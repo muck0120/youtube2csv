@@ -24,9 +24,9 @@ type Service struct {
 	client *youtube.Service
 }
 
-func NewService(ctx context.Context) (*Service, error) {
+func NewService(ctx context.Context, secretFile, tokenFile string) (*Service, error) {
 	return sync.OnceValues(func() (*Service, error) {
-		secret, err := os.ReadFile(os.Getenv("WORKDIR") + "/input/client_secret.json")
+		secret, err := os.ReadFile(secretFile)
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}
@@ -36,7 +36,7 @@ func NewService(ctx context.Context) (*Service, error) {
 			return nil, errors.WithStack(err)
 		}
 
-		token, err := getToken(ctx, config)
+		token, err := getToken(ctx, config, tokenFile)
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}
@@ -50,7 +50,7 @@ func NewService(ctx context.Context) (*Service, error) {
 	})()
 }
 
-func getToken(ctx context.Context, config *oauth2.Config) (*oauth2.Token, error) {
+func getToken(ctx context.Context, config *oauth2.Config, tokenFile string) (*oauth2.Token, error) {
 	token, err := getTokenFromCache()
 	if err == nil { // キャッシュファイルがあればそれを返す
 		return token, nil
@@ -61,7 +61,7 @@ func getToken(ctx context.Context, config *oauth2.Config) (*oauth2.Token, error)
 		return nil, errors.WithStack(err)
 	}
 
-	err = saveToken(token)
+	err = saveToken(token, tokenFile)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
@@ -102,8 +102,8 @@ func getTokenFromWeb(ctx context.Context, config *oauth2.Config) (*oauth2.Token,
 	return token, nil
 }
 
-func saveToken(token *oauth2.Token) error {
-	file, err := os.OpenFile((os.Getenv("WORKDIR") + "/input/token.json"), os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0o600)
+func saveToken(token *oauth2.Token, tokenFile string) error {
+	file, err := os.OpenFile(tokenFile, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0o600)
 	if err != nil {
 		return errors.WithStack(err)
 	}

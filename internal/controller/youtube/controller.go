@@ -5,7 +5,6 @@ import (
 	"encoding/csv"
 	"os"
 	"strconv"
-	"time"
 
 	"github.com/muck0120/youtube2csv/internal/pkg/errors"
 	"github.com/muck0120/youtube2csv/internal/usecase/youtube"
@@ -21,27 +20,28 @@ type GetInfoController struct {
 
 type GetInfoControllerInput struct {
 	ChannelID string
+	FilePath  string
 }
 
 func NewGetInfoController(getInfoUseCase youtube.IGetInfoUseCase) *GetInfoController {
 	return &GetInfoController{GetInfoUseCase: getInfoUseCase}
 }
 
-func (c *GetInfoController) Run(ctx context.Context, in *GetInfoControllerInput) error {
-	out, err := c.GetInfoUseCase.Execute(ctx, &youtube.GetInfoUseCaseInput{ChannelID: in.ChannelID})
+func (c *GetInfoController) Run(ctx context.Context, input *GetInfoControllerInput) error {
+	out, err := c.GetInfoUseCase.Execute(ctx, &youtube.GetInfoUseCaseInput{ChannelID: input.ChannelID})
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	if err := c.csv(ctx, out); err != nil {
+	if err := c.csv(ctx, input.FilePath, out); err != nil {
 		return errors.WithStack(err)
 	}
 
 	return nil
 }
 
-func (c *GetInfoController) csv(_ context.Context, out *youtube.GetInfoUseCaseOutput) error {
-	file, err := os.Create(os.Getenv("WORKDIR") + "/output/" + time.Now().Format("20060102150405") + ".csv")
+func (c *GetInfoController) csv(_ context.Context, path string, out *youtube.GetInfoUseCaseOutput) error {
+	file, err := os.Create(path)
 	if err != nil {
 		return errors.WithStack(err)
 	}
