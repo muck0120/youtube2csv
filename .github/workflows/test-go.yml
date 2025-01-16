@@ -19,9 +19,5 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Load Environment
-        shell: bash
-        run: cat .env.test >> $GITHUB_ENV
-
       - name: Run
         run: go test -v -shuffle=on ./...
