@@ -1,3 +1,5 @@
+//go:generate go run go.uber.org/mock/mockgen -source=$GOFILE -package=$GOPACKAGE -destination=./service_mock.go
+
 package youtube
 
 import (
