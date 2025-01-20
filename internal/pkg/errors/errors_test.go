@@ -20,22 +20,22 @@ func TestLogStackTrace(t *testing.T) {
 
 	tests := []struct {
 		name string
-		args error
+		arg  error
 		want slog.Attr
 	}{
 		{
 			name: "エラーが nil の場合、空の stacktrace を返す",
-			args: nil,
+			arg:  nil,
 			want: slog.Any("stacktrace", []any{}),
 		},
 		{
 			name: "エラーが go-errors/errors.Error でない場合、エラーの詳細を返す",
-			args: err,
+			arg:  err,
 			want: slog.String("details", fmt.Sprintf("%+v", err)),
 		},
 		{
 			name: "エラーが go-errors/errors.Error の場合、stacktrace を返す",
-			args: goerr,
+			arg:  goerr,
 			want: slog.Any("stacktrace", goerr.StackFrames()),
 		},
 	}
@@ -44,7 +44,7 @@ func TestLogStackTrace(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			t.Parallel()
 
-			got := pkgerrors.LogStackTrace(test.args)
+			got := pkgerrors.LogStackTrace(test.arg)
 			assert.Equal(t, test.want, got)
 		})
 	}

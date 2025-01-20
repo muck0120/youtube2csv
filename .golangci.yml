@@ -32,6 +32,8 @@ linters-settings:
   mnd:
     ignored-numbers:
       - "0o600"
+    ignored-files:
+      - fixture.go
 
   gofumpt:
     module-path: github.com/muck0120/youtube2csv
@@ -41,6 +43,7 @@ issues:
     - path: _test\.go
       linters:
         - err113
+        - funlen
 
 linters:
   disable-all: true

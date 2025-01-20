@@ -14,19 +14,19 @@ func TestParseISO8601Duration(t *testing.T) {
 
 	tests := []struct {
 		name      string
-		args      string
+		arg       string
 		want      time.Duration
 		wantError bool
 	}{
 		{
 			name:      "有効な ISO8601 duration 'PT2H30M45S' をパースできる",
-			args:      "PT2H30M45S",
+			arg:       "PT2H30M45S",
 			want:      (2 * time.Hour) + (30 * time.Minute) + (45 * time.Second),
 			wantError: false,
 		},
 		{
 			name:      "無効な ISO8601 duration 'InvalidDuration' をパースできない",
-			args:      "InvalidDuration",
+			arg:       "InvalidDuration",
 			want:      0,
 			wantError: true,
 		},
@@ -36,7 +36,7 @@ func TestParseISO8601Duration(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			t.Parallel()
 
-			got, err := pkgtime.ParseISO8601Duration(test.args)
+			got, err := pkgtime.ParseISO8601Duration(test.arg)
 			if test.wantError {
 				assert.Error(t, err)
 
