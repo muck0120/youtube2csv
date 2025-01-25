@@ -1,5 +1,3 @@
-//go:generate go run go.uber.org/mock/mockgen -source=$GOFILE -package=$GOPACKAGE -destination=./controller_mock.go
-
 package youtube
 
 import (
@@ -11,10 +9,6 @@ import (
 	"github.com/muck0120/youtube2csv/internal/pkg/errors"
 	"github.com/muck0120/youtube2csv/internal/usecase/youtube"
 )
-
-type IGetInfoController interface {
-	Run(ctx context.Context, in *GetInfoControllerInput) error
-}
 
 type GetInfoController struct {
 	GetInfoUseCase youtube.IGetInfoUseCase

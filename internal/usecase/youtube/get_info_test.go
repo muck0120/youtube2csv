@@ -2,7 +2,6 @@ package youtube_test
 
 import (
 	"context"
-	"errors"
 	"math"
 	"sort"
 	"testing"
@@ -56,7 +55,7 @@ func TestGetInfoUseCase_Execute(t *testing.T) {
 			name: "Channel が見つからない場合、エラーが返る",
 			arg:  &usecase.GetInfoUseCaseInput{ChannelID: "ABCDEFG123456"},
 			setup: func(repo *domain.MockIRepository) {
-				repo.EXPECT().FindByID(gomock.Any(), "ABCDEFG123456").Return(nil, errors.New("channel not found"))
+				repo.EXPECT().FindByID(gomock.Any(), "ABCDEFG123456").Return(nil, assert.AnError)
 			},
 			want:      nil,
 			wantError: true,
