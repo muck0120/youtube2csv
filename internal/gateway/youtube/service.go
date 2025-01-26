@@ -9,6 +9,7 @@ import (
 	"os"
 	"slices"
 	"sync"
+	"time"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -54,7 +55,7 @@ func NewService(ctx context.Context, secretFile, tokenFile string) (*Service, er
 
 func getToken(ctx context.Context, config *oauth2.Config, tokenFile string) (*oauth2.Token, error) {
 	token, err := getTokenFromCache(tokenFile)
-	if err == nil { // キャッシュファイルがあればそれを返す
+	if err == nil && token.Expiry.After(time.Now()) { // キャッシュファイルがあり、かつ、トークンが有効期限内の場合
 		return token, nil
 	}
 
