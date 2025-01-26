@@ -3,17 +3,63 @@ run:
   timeout: 5m
 
 linters-settings:
-  depguard: # TODO: Go 実装の際に見直す
+  depguard:
     rules:
       main:
         files:
-          - $all
+          - "**/main.go"
+          - "!$test"
+        allow:
+          - $gostd
+          - github.com/muck0120/youtube2csv/internal
+      controller:
+        files:
+          - "**/internal/controller/**/*.go"
+          - "!$test"
+        allow:
+          - $gostd
+          - github.com/muck0120/youtube2csv/internal/pkg
+          - github.com/muck0120/youtube2csv/internal/usecase
+      domain:
+        files:
+          - "**/internal/domain/**/*.go"
+          - "!$test"
+        allow:
+          - $gostd
+          - github.com/muck0120/youtube2csv/internal/pkg
+          - github.com/muck0120/youtube2csv/internal/domain
+      gateway:
+        files:
+          - "**/internal/gateway/**/*.go"
+          - "!$test"
+        allow:
+          - $gostd
+          - github.com/muck0120/youtube2csv/internal/pkg
+          - github.com/muck0120/youtube2csv/internal/domain
+      pkg:
+        files:
+          - "**/internal/pkg/**/*.go"
+          - "!**/internal/pkg/errors/*.go"
+          - "!$test"
+        allow:
+          - $gostd
+          - github.com/sosodev/duration
+          - github.com/muck0120/youtube2csv/internal/pkg/errors
+      pkg-errors:
+        files:
+          - "**/internal/pkg/errors/*.go"
           - "!$test"
         allow:
           - $gostd
           - github.com/go-errors/errors
-          - github.com/sosodev/duration
-          - github.com/muck0120/youtube2csv
+      usecase:
+        files:
+          - "**/internal/usecase/**/*.go"
+          - "!$test"
+        allow:
+          - $gostd
+          - github.com/muck0120/youtube2csv/internal/pkg
+          - github.com/muck0120/youtube2csv/internal/domain
       test:
         files:
           - $test
