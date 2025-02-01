@@ -23,6 +23,24 @@ YouTube2CSV を使用するために、以下の 2 点の事前準備を行な�
 go run github.com/muck0120/youtube2csv --secret="path/to/client_secret.json" --token="path/to/token.json" --channel-id="Target Channnel ID" --out="path/to/output.csv"
 ```
 
+認証用の `token.json` ファイルが存在しない、またはトークンの期限が切れている場合は以下のように表示されますので、表示された URL にアクセスしてください。
+
+```sh
+👇 Please access the displayed URL to obtain the authentication code and enter it.
+
+https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=XXXXX&redirect_uri=xxxxx&response_type=code&scope=https://www.googleapis.com/auth/youtube.readonly&state=state-token
+```
+
+URL にアクセスした後は以下の手順に沿って、認証トークンを取得し、コンソールに貼り付けてください。
+
+1. Google アカウントの選択画面になるので、「📲 事前準備」で認証情報を作成した Google アカウントを選択します。
+2. 「このアプリは Google で確認されていません」という表示が出ますが、「続行」をクリックします。
+3. さらに「youtube2csv が Google アカウントへのアクセスを求めています」と出るので「続行」をクリックします。
+4. すると `http://localhost/?state=state-token&code=xxxxx&scope=https://www.googleapis.com/auth/youtube.readonly` という URL にリダイレクトされるので `code=xxxxx` の `xxxxx` の部分をコピーしてください。
+5. 「4.」でコピーした `xxxxx` を `👇 Please access the displayed URL to obtain the authentication code and enter it.` に続いてコンソールにペーストして Enter をクリックします。
+
+上手く認証が通れば `--out=` で指定したファイルに動画情報の一覧が書き出されます。
+
 ### フラグについて
 
 以下のフラグを使用できます。
