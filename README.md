@@ -17,13 +17,17 @@ YouTube2CSV を使用するために、以下の 2 点の事前準備を行な�
 
 ## 📝 使い方
 
-以下のコマンドで使用できます。
+### 1. 以下のコマンドを実行
+
+引数は適宜変更してください（各フラグの詳細については [こちら](#フラグについて) を参照）。
 
 ```sh
 go run github.com/muck0120/youtube2csv --secret="path/to/client_secret.json" --token="path/to/token.json" --channel-id="Target Channnel ID" --out="path/to/output.csv"
 ```
 
-認証用の `token.json` ファイルが存在しない、またはトークンの期限が切れている場合は以下のように表示されますので、表示された URL にアクセスしてください。
+### 2. 表示された URL にアクセス
+
+認証用の `token.json` ファイルが存在しない、またはトークンの期限が切れている場合は以下のように URL が表示されますので、表示された URL にアクセスしてください。
 
 ```sh
 👇 Please access the displayed URL to obtain the authentication code and enter it.
@@ -31,7 +35,9 @@ go run github.com/muck0120/youtube2csv --secret="path/to/client_secret.json" --t
 https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=XXXXX&redirect_uri=xxxxx&response_type=code&scope=https://www.googleapis.com/auth/youtube.readonly&state=state-token
 ```
 
-URL にアクセスした後は以下の手順に沿って、認証トークンを取得し、コンソールに貼り付けてください。
+### 3. 認証トークンを取得する
+
+上記の URL にアクセスした後は以下の手順に沿って、認証トークンを取得し、コンソールに貼り付けてください。
 
 1. Google アカウントの選択画面になるので、「📲 事前準備」で認証情報を作成した Google アカウントを選択します。
 2. 「このアプリは Google で確認されていません」という表示が出ますが、「続行」をクリックします。
