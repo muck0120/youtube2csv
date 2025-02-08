@@ -1,5 +1,8 @@
 # YouTube2CSV (YouTube Data Export Tool)
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/muck0120/youtube2csv)](https://goreportcard.com/report/github.com/muck0120/youtube2csv)
+[![go.mod Go version](https://img.shields.io/github/go-mod/go-version/muck0120/youtube2csv)](https://github.com/muck0120/youtube2csv)
+
 このツールは、YouTube Data API を使って動画情報を取得し、CSV ファイルにエクスポートするためのアプリケーションです。主な機能は以下の通りです。
 
 - 指定した YouTube チャンネル ID の動画情報一覧を取得。
