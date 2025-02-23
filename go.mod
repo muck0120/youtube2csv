@@ -1,6 +1,6 @@
 module github.com/muck0120/youtube2csv
 
-go 1.23.5
+go 1.23.6
 
 require (
 	github.com/go-errors/errors v1.5.1
