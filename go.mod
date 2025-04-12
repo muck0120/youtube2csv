@@ -6,7 +6,7 @@ require (
 	github.com/go-errors/errors v1.5.1
 	github.com/sosodev/duration v1.3.1
 	github.com/stretchr/testify v1.10.0
-	go.uber.org/mock v0.5.0
+	go.uber.org/mock v0.5.1
 	golang.org/x/oauth2 v0.29.0
 	google.golang.org/api v0.228.0
 )
