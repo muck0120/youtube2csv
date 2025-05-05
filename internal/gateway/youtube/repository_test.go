@@ -1,7 +1,6 @@
 package youtube_test
 
 import (
-	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -73,7 +72,7 @@ func TestRepository_FindByID(t *testing.T) {
 
 			test.setup(srv)
 
-			got, err := gateway.NewRepository(srv).FindByID(context.Background(), test.arg)
+			got, err := gateway.NewRepository(srv).FindByID(t.Context(), test.arg)
 
 			assert.Equal(t, test.wantError, err != nil)
 			assert.Equal(t, test.want, got)

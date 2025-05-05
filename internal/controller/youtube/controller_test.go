@@ -1,7 +1,6 @@
 package youtube_test
 
 import (
-	"context"
 	"encoding/csv"
 	"os"
 	"testing"
@@ -121,7 +120,7 @@ func TestGetInfoController_Run(t *testing.T) {
 
 			test.setup(repo)
 
-			err := controller.NewGetInfoController(repo).Run(context.Background(), test.arg)
+			err := controller.NewGetInfoController(repo).Run(t.Context(), test.arg)
 			assert.Equal(t, test.wantError, err != nil)
 
 			if test.more != nil {

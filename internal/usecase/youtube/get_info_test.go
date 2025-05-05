@@ -1,7 +1,6 @@
 package youtube_test
 
 import (
-	"context"
 	"math"
 	"sort"
 	"testing"
@@ -71,7 +70,7 @@ func TestGetInfoUseCase_Execute(t *testing.T) {
 
 			test.setup(repo)
 
-			got, err := usecase.NewGetInfoUseCase(repo).Execute(context.Background(), test.arg)
+			got, err := usecase.NewGetInfoUseCase(repo).Execute(t.Context(), test.arg)
 
 			assert.Equal(t, test.wantError, err != nil)
 			assert.Equal(t, test.want, got)

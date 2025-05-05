@@ -8,7 +8,7 @@ gen:
 
 .PHONY: lint
 lint:
-	@go run github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0 run -v
+	@go tool github.com/golangci/golangci-lint/cmd/golangci-lint run -v
 
 .PHONY: test
 test:
