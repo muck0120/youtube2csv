@@ -8,15 +8,15 @@ require (
 	github.com/stretchr/testify v1.10.0
 	go.uber.org/mock v0.6.0
 	golang.org/x/oauth2 v0.30.0
-	google.golang.org/api v0.246.0
+	google.golang.org/api v0.248.0
 )
 
 require (
 	4d63.com/gocheckcompilerdirectives v1.3.0 // indirect
 	4d63.com/gochecknoglobals v0.2.2 // indirect
-	cloud.google.com/go/auth v0.16.3 // indirect
+	cloud.google.com/go/auth v0.16.5 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.8 // indirect
-	cloud.google.com/go/compute/metadata v0.7.0 // indirect
+	cloud.google.com/go/compute/metadata v0.8.0 // indirect
 	github.com/4meepo/tagalign v1.4.2 // indirect
 	github.com/Abirdcfly/dupword v0.1.3 // indirect
 	github.com/Antonboom/errname v1.0.0 // indirect
@@ -208,9 +208,9 @@ require (
 	golang.org/x/tools v0.36.0 // indirect
 	golang.org/x/tools/go/expect v0.1.1-deprecated // indirect
 	golang.org/x/tools/go/packages/packagestest v0.1.1-deprecated // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250728155136-f173205681a0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250818200422-3122310a409c // indirect
 	google.golang.org/grpc v1.74.2 // indirect
-	google.golang.org/protobuf v1.36.6 // indirect
+	google.golang.org/protobuf v1.36.7 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
