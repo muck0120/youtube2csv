@@ -5,7 +5,7 @@ go 1.24.2
 require (
 	github.com/go-errors/errors v1.5.1
 	github.com/sosodev/duration v1.3.1
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.0
 	go.uber.org/mock v0.6.0
 	golang.org/x/oauth2 v0.30.0
 	google.golang.org/api v0.248.0
