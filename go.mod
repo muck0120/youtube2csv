@@ -7,7 +7,7 @@ require (
 	github.com/sosodev/duration v1.3.1
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/mock v0.6.0
-	golang.org/x/oauth2 v0.31.0
+	golang.org/x/oauth2 v0.32.0
 	google.golang.org/api v0.250.0
 )
 
