@@ -1,6 +1,6 @@
 module github.com/muck0120/youtube2csv
 
-go 1.24.2
+go 1.25.0
 
 require (
 	github.com/go-errors/errors v1.5.1
@@ -8,7 +8,7 @@ require (
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/mock v0.6.0
 	golang.org/x/oauth2 v0.35.0
-	google.golang.org/api v0.267.0
+	google.golang.org/api v0.268.0
 )
 
 require (
